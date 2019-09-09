@@ -18,7 +18,7 @@ dropHandler = function (e) {
 
         lines.forEach(line => {
             var cell = line.split(' ');
-            if (cell.length > 5) // TODO clear
+            if (cell.length > 5) // TODO check clearly not message line
                 talkingData.push({ // TODO too long message check, and exit message check
                     name: cell[5],
                     time: cell[0] + cell[1] + cell[2] + cell[3],
@@ -32,6 +32,10 @@ dropHandler = function (e) {
             .key(function (d) { return d.name; })
             .rollup(function (v) { return d3.sum(v, function (d) { return 1; }); })
             .entries(debug_var);
+
+
+        closeDragDropBox(e);
+        createCanvas(countTalks);
     }
 
     for (i = 0; i < l; i++) {
@@ -54,8 +58,24 @@ fileCheck = function () {
     return true;
 }
 
-processFile = function (file) {
-    var reader = new FileReader();
+closeDragDropBox = function(div){
+    //  div.target.hidden = true;
+    div.target.style.display = "none";
+}
 
-    reader.onload
+createCanvas = function(data){
+    var svg = d3.select("body").append("svg")
+    .attr("width", "100%")
+    .attr("height", "100%"),
+    bar_width = 20; // TODO relative
+    bar_height = 10;
+
+    svg.selectAll("bar")
+    .data(data)
+    .enter().append("rect")
+    .style("fill", "steelblue")
+    .attr("x", function(d){ return ((data.findIndex(function(e){return e == d}) + 1) * bar_width + 2)})
+    .attr("width",bar_width)
+    .attr("y", "0px")
+    .attr("height", function(d){ console.log(d.value); return d.value; });
 }
