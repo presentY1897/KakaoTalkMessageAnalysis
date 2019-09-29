@@ -18,7 +18,7 @@ dropHandler = function (e) {
 
         lines.forEach(line => {
             var cell = line.split(' ');
-            if (cell.length > 5 && dateCheck(makeDate(cell))) // TODO check clearly not message line
+            if (cell.length > 5 )//&& dateCheck(makeDate(cell))) // TODO check clearly not message line
                 talkingData.push({ // TODO too long message check, and exit message check
                     name: cell[5],
                     time: cell[0] + cell[1] + cell[2] + cell[3],
@@ -54,7 +54,7 @@ dragOverHandler = function (ev) {
     ev.preventDefault();
 }
 
-makeDate = function (cell) {
+makeDate = function (cell) { // TODO Clear hard coding
     if (cell.length > 4) {
         var year = cell[0],
             month = cell[1],
