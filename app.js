@@ -5,6 +5,7 @@ var router = require('./router/main')(app);
 
 // view 경로 설정
 app.set('views', __dirname + '/views');
+app.set('port', process.env.PORT || 8080)
 
 app.use(cors());
 
@@ -13,6 +14,6 @@ app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 app.use(express.static('public'));
 
-var server = app.listen(4000, function(){
-    console.log("Express server has started on port 4000")
+var server = app.listen(app.get('port'), function(){
+    console.log("Express server has started on port " + app.get('port'))
 });
