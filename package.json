@@ -1,0 +1,30 @@
+{
+  "name": "kakaotalkmessageanalysis",
+  "version": "0.0.1",
+  "description": "minimize server",
+  "main": "app.js",
+  "dependencies": {
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/presenty1897/kakaotalkmessageanalysis.git"
+  },
+  "keywords": [
+    "message",
+    "analysis",
+    "visualize"
+  ],
+  "author": "presenty1897",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/presenty1897/kakaotalkmessageanalysis/issues"
+  },
+  "homepage": "https://github.com/presenty1897/kakaotalkmessageanalysis#readme"
+}
