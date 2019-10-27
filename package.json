@@ -26,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/presenty1897/kakaotalkmessageanalysis/issues"
   },
-  "homepage": "https://github.com/presenty1897/kakaotalkmessageanalysis#readme"
+  "homepage": "https://github.com/presenty1897/kakaotalkmessageanalysis#readme",
+  "directories": {
+    "test": "test"
+  }
 }
