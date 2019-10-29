@@ -9,10 +9,10 @@ Text was analyzed as time-series and person, message.
 
 ## Sequence
 
-### Sudo
+### Interface
 
 1. User upload txt data on service.
-2. Data was analyzed in user's website.
+2. Data was analyzed in user's browser.
 3. Display dynamic data viewer based on d3js.
 
 ### Develop
@@ -34,9 +34,3 @@ Text was analyzed as time-series and person, message.
 - MainPage.html
 - DefaultTheme.css
 - Animation.css
-
-
-
-### Test
-
-- test1
