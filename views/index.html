@@ -9,13 +9,17 @@
     <script type="text/javascript" charset="utf8"
         src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
     <script src="/js/fileReader.js"></script>
+    <script src="/js/visualize/dashboard.js"></script>
+
 </head>
 
-<body>
-    <div id="area">
+<body onload="dataParser()">
+    <div id="area" style="display:none">
         <div id="drop_area" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)"></div>
         <div id="viewer_area"></div>
     </div>
+    <div id='dashboard'></div>
 </body>
+
 
 </html>
