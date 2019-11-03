@@ -4,27 +4,45 @@ var area_tag = document.querySelector('#area')
 
 var debug_var;
 
+function matchAll(str, regex) {
+    var result = [];
+    var match;
+    if (regex.global) {
+        while (match = regex.exec(str)) {
+            result.push(match);
+        }
+    } else {
+        if (match = regex.exec(str)) {
+            result.push(match);
+        }
+    }
+    return result;
+}
+
+
 function parser(file_content) {
     // g: find all matches, m: multiline matching
     console.log('file checking');
-    console.log(file_content);
     console.log(typeof(file_content));
-    var regex_test = /(.+\n)+/g;
-    var regex_date = /^-{15} ([a-zA-Z]{6,9}), ([a-zA-Z]+) (\d{1,2}), (20\d{2}) -{15}\n(((?!-{15}).*\n)*)/mg;
-    var regex_message = /^\[(\w+)\] \[(\d{1,2}:\d{1,2} (P|A)M)\] (((?!\[\w+\] (\[\d{1,2}:\d{1,2} (P|A)M\])).*\n)+)/mg;
-    var date_content;
-    date_content = regex_test.exec(file_content);
-    console.log(date_content);
-    // do {
-    //     date_content = regex_date.exec(file_content);
-    //     if (date_content) {
-    //         console.log(date_content);
-    //     }
-    //     else
-    //     {
-    //         console.log('no date_content');
-    //     }
-    // } while (date_content);
+    var regexDate = /^-{15} [a-zA-Z]{6,9}, ([a-zA-Z]+ \d{1,2}, 20\d{2}) -{15}(\r\n|\n)(((?!-{15}).*(\r\n|\n))*)/mg;
+    var regexMessage = /^\[([^\].]+)\] \[(\d{1,2}:\d{1,2} (P|A)M)\] (((?!\[[^\].]+\] (\[\d{1,2}:\d{1,2} (P|A)M\])).*(\r\n|\n))+)/mg;
+    result = {'objects': []};
+    dateContents = matchAll(file_content, regexDate);
+    dateContents.forEach(function (dateContent) {
+        var content = {}
+        content['date'] = dateContent[1];
+        content['messages'] = [];
+        messageContents = matchAll(dateContent[3], regexMessage);
+        messageContents.forEach(function (messageContent) {
+            var data = {};
+            data['name'] = messageContent[1];
+            data['time'] = messageContent[2];
+            data['message'] = messageContent[4];
+            content['messages'].push(data);
+        });
+        result['objects'].push(content);
+    });
+    console.log(result);
 }
 
 dropHandler = function (e) {
@@ -76,12 +94,12 @@ dropHandler = function (e) {
     return true;
 }
 
-dragOverHandler = function (event) {
+dragOverHandler = function (e) {
     console.log('File(s) in drop zone');
-    event.currentTarget.classList.add('file_on')
+    e.currentTarget.classList.add('file_on')
 
     // Prevent default behavior (Prevent file from being opened)
-    event.preventDefault();
+    e.preventDefault();
 }
 
 makeDate = function (cell) { // TODO Clear hard coding
