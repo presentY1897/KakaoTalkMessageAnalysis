@@ -1,24 +1,27 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <!-- <link rel="stylesheet" type="text/css" href="css/main.css"> -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-    <script type="text/javascript" charset="utf8"
-        src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-    <script src="/js/fileReader.js"></script>
-    <script src="/js/visualize/dashboard.js"></script>
-
 </head>
 
-<body onload="dataParser()">
-    <div id="area" style="display:none">
-        <div id="drop_area" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)"></div>
-        <div id="viewer_area"></div>
+<body>
+    <div id="area">
+        <div id="file_info"><span>Name: test.txt</span><span>Size: 1234 bytes</span></div>
+        <div id="viewer_area">
+            <div id="chart_1"></div>
+            <div id="chart_2"></div>
+            <div id="chart_3"></div>
+            <div id="chart_4"></div>
+        </div>
     </div>
-    <div id='dashboard'></div>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <!-- <script src="/js/fileReader.js"></script> -->
+    <script src="/js/fileReader.js"></script>
 </body>
 
 

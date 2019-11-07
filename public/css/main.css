@@ -1,13 +1,53 @@
-#drop_area {
-    background-color: blue;
-    width:  100%;
-    height: 100%;
-  }
-/* 
-  #datatable{
-      width: 100%;
-      height: 50%;
-  } */
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f7e600;
+}
+
+#area {
+  width: 100%;
+  height: 100%;
+}
+
+#area * {
+  background: cornflowerblue;
+  border: 3px solid white;
+}
+
+#chart_1 {
+  width: 50%;
+  height: 200px;
+  float: left;
+}
+
+#chart_2 {
+  width: 50%;
+  height: 200px;
+  float: left;
+}
+
+#chart_3 {
+  width: 100%;
+  height: 200px;
+  float: left;
+}
+
+#chart_4 {
+  width: 100%;
+  height: 200px;
+  float: left;
+}
+
+.file_on {
+  border: 3px dashed black;
+  opacity: 0.5;
+}
 
 .display_none {
     display: none;
