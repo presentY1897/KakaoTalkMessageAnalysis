@@ -4,9 +4,9 @@
   "description": "minimize server",
   "main": "app.js",
   "dependencies": {
+    "cors": "^2.8.5",
     "ejs": "^2.6.2",
-    "express": "^4.17.1",
-    "cors": "^2.8.5"
+    "express": "^4.17.1"
   },
   "devDependencies": {},
   "scripts": {
@@ -26,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/presenty1897/kakaotalkmessageanalysis/issues"
   },
-  "homepage": "https://github.com/presenty1897/kakaotalkmessageanalysis#readme"
+  "homepage": "https://github.com/presenty1897/kakaotalkmessageanalysis#readme",
+  "directories": {
+    "test": "test"
+  }
 }

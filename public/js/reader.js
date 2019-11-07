@@ -1,4 +1,4 @@
-reader = function() {
+Reader = function() {
 
     this.fileIn = function(files){
 
