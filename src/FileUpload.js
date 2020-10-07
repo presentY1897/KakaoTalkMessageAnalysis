@@ -8,7 +8,7 @@ function FileUpload() {
   return (
     <div className="FileUpload">
       <input placeholder='파일을 올려주세요' className="FileInputBox" value={fileValue} onChange={inputChange}/>
-      <button type="submit" className="FileUploadButton">업로드</button>
+      <button type="submit" className="FileUploadButton">확인</button>
     </div>
   );
 }

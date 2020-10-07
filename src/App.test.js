@@ -5,13 +5,13 @@ import FileUpload from './FileUpload';
 describe('<FileUpload />', () => {
   it('has upload button', () => {
     const { getByText } = render(<FileUpload />);
-    getByText(/업로드/);
+    getByText(/확인/);
   });
 
   it('upload file null check', () =>{
     const { getByText, getByPlaceholderText } = render(<FileUpload />);
     const input = getByPlaceholderText(/파일을 올려주세요/);
-    const button = getByText(/업로드/);
+    const button = getByText(/확인/);
 
     fireEvent.change(input, {
       target: 'testcase'
