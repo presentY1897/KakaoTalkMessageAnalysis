@@ -9,7 +9,7 @@ describe('<FileUpload />', () => {
   });
 
   it('upload file null check', () =>{
-    const { getByText, getByPlaceholderText } = render(<FileUpload />);
+    const { container, getByText, getByPlaceholderText } = render(<FileUpload />);
     const input = getByPlaceholderText(/파일을 올려주세요/);
     const button = getByText(/확인/);
 
@@ -20,7 +20,7 @@ describe('<FileUpload />', () => {
     });
 
     fireEvent.click(button);
-    expect(input.value).not.toBeUndefined();
-    expect(input.value).not.toBeNull();
+    expect(container.fileValue).not.toBeUndefined();
+    expect(container.fileValue).not.toBeNull();
   });
 });
