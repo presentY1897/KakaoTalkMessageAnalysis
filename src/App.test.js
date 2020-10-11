@@ -14,7 +14,9 @@ describe('<FileUpload />', () => {
     const button = getByText(/확인/);
 
     fireEvent.change(input, {
-      target: 'testcase'
+      target: {
+        files :[new File(['테스트'], '테스트.txt', {type: 'text/plain'})]
+      }
     });
 
     fireEvent.click(button);
