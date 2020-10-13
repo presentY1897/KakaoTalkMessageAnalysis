@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import FileUpload from './FileUpload';
 
 describe('<FileUpload />', () => {
@@ -10,16 +11,13 @@ describe('<FileUpload />', () => {
     expect(input).toBeTruthy();
   });
 
-  const testTextFile = new File(['테스트'], '테스트.txt', {type: 'text/plain'});
   it('upload file null check', () =>{
-    fireEvent.change(input, {
-      target: {
-        files :[testTextFile]
-      }
-    });
-
-    fireEvent.click(button);
+    const testTextFile = new File(['테스트'], '테스트.txt', {type: 'text/plain'});
+    const testFiles = [testTextFile];
+    userEvent.upload(input, testFiles);
+    //fireEvent.click(button);
     //expect(container.fileValue).not.toBeUndefined();
+    console.log(input.files);
     expect(container.fileValue).not.toBeNull();
   });
 });
