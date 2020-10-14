@@ -12,11 +12,15 @@ describe('<FileUpload />', () => {
   });
 
   it('upload file null check', () =>{
-    const testTextFile = new File(['테스트'], '테스트.txt', {type: 'text/plain'});
-    const testFiles = [testTextFile];
+    expect(() => {fireEvent.click(button)}).toThrow(ReferenceError);
+  });
+
+  it('upload file type check', () => {
+    const testImageFile = new File(['테스트'], '테스트.png', {type: 'image/png'});
+    const testFiles = [testImageFile];
     
-    expect(() => {
-      fireEvent.click(button)
-    }).toThrow(ReferenceError);
+    userEvent.upload(input, testFiles);
+    expect(container.fileValue).not.toBeNull();
+    expect(() => {fireEvent.click(button)}).toThrow(ReferenceError);
   });
 });
