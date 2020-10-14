@@ -23,4 +23,14 @@ describe('<FileUpload />', () => {
     expect(container.fileValue).not.toBeNull();
     expect(() => {fireEvent.click(button)}).toThrow(ReferenceError);
   });
+
+  it('upload file text ok check', () => {
+    const testTextFile = new File(['테스트'], '테스트.txt', {type: 'text/plain'});
+    const testFiles = [testTextFile];
+    
+    userEvent.upload(input, testFiles);
+    expect(container.fileValue).not.toBeNull();
+    console.log(container.fileValue);
+    expect(() => {fireEvent.click(button)}).not.toThrow(ReferenceError);
+  });
 });
