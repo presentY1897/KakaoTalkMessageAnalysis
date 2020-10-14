@@ -14,10 +14,9 @@ describe('<FileUpload />', () => {
   it('upload file null check', () =>{
     const testTextFile = new File(['테스트'], '테스트.txt', {type: 'text/plain'});
     const testFiles = [testTextFile];
-    userEvent.upload(input, testFiles);
-    //fireEvent.click(button);
-    //expect(container.fileValue).not.toBeUndefined();
-    console.log(input.files);
-    expect(container.fileValue).not.toBeNull();
+    
+    expect(() => {
+      fireEvent.click(button)
+    }).toThrow(ReferenceError);
   });
 });
