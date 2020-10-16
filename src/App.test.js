@@ -12,6 +12,7 @@ describe('<FileUpload />', () => {
   });
 
   it('upload file null check', () =>{
+    expect(container.state.file).toBeNull();
     expect(() => {fireEvent.click(button)}).toThrow(ReferenceError);
   });
 
@@ -20,7 +21,7 @@ describe('<FileUpload />', () => {
     const testFiles = [testImageFile];
     
     userEvent.upload(input, testFiles);
-    expect(container.fileValue).not.toBeNull();
+    expect(container.state.file).not.toBeNull();
     expect(() => {fireEvent.click(button)}).toThrow(ReferenceError);
   });
 
@@ -29,8 +30,7 @@ describe('<FileUpload />', () => {
     const testFiles = [testTextFile];
     
     userEvent.upload(input, testFiles);
-    expect(container.fileValue).not.toBeNull();
-    console.log(container.fileValue);
+    expect(container.state.file).not.toBeNull();
     expect(() => {fireEvent.click(button)}).not.toThrow(ReferenceError);
   });
 });
