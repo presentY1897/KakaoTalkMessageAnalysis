@@ -34,3 +34,37 @@ describe('<FileUpload />', () => {
     expect(() => {fireEvent.click(button)}).not.toThrow(ReferenceError);
   });
 });
+
+describe('Uploaded Text Valid Check', () => {
+  const { container, getByText, getByPlaceholderText } = render(<TalkFile />);
+ // convert data by uploaded file
+
+  it('Data was kakaoTalk result', () => {
+
+  });
+  it('Talk Type Check', () => {
+
+  })
+});
+
+describe('DataTable Valid Check', () => {
+  const { container, getByText, getByPlaceholderText } = render(<DataTable />);
+  //Convert Data
+
+  it('Person have correct type data', () => {
+
+  });
+  it('Person check', () => {
+
+  });
+
+  it('Room have correct type data', () =>{
+
+  });
+  it('Room have correct talk data', () => {
+
+  });
+  it('Room was sorted by time', () =>{
+    
+  })
+})
