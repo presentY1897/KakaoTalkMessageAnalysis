@@ -11,39 +11,45 @@ describe('<FileUpload />', () => {
     expect(input).toBeTruthy();
   });
 
-  it('upload file null check', () =>{
+  it('upload file null check', () => {
     expect(container.state.file).toBeNull();
-    expect(() => {fireEvent.click(button)}).toThrow(ReferenceError);
+    expect(() => { fireEvent.click(button) }).toThrow(ReferenceError);
   });
 
   it('upload file type check', () => {
-    const testImageFile = new File(['테스트'], '테스트.png', {type: 'image/png'});
+    const testImageFile = new File(['테스트'], '테스트.png', { type: 'image/png' });
     const testFiles = [testImageFile];
-    
+
     userEvent.upload(input, testFiles);
     expect(container.state.file).not.toBeNull();
-    expect(() => {fireEvent.click(button)}).toThrow(ReferenceError);
+    expect(() => { fireEvent.click(button) }).toThrow(ReferenceError);
   });
 
   it('upload file text ok check', () => {
-    const testTextFile = new File(['테스트'], '테스트.txt', {type: 'text/plain'});
+    const testTextFile = new File(['테스트'], '테스트.txt', { type: 'text/plain' });
     const testFiles = [testTextFile];
-    
+
     userEvent.upload(input, testFiles);
     expect(container.state.file).not.toBeNull();
-    expect(() => {fireEvent.click(button)}).not.toThrow(ReferenceError);
+    expect(() => { fireEvent.click(button) }).not.toThrow(ReferenceError);
   });
 });
 
 describe('Uploaded Text Valid Check', () => {
   const { container, getByText, getByPlaceholderText } = render(<TalkFile />);
- // convert data by uploaded file
+  // convert data by uploaded file
 
-  it('Data was kakaotalk result', () => {
 
+  it('Data was kakaotalk result error', () => {
+    expect(() => { container.addFile(); }).toThrow(ReferenceError);
+  });
+  it('Data was kakaotalk result correct', () => {
+    expect(() => { container.addFile(); }).not.toThrow(ReferenceError);
+    expect(container.state.file.type);
   });
   it('Talk type check', () => {
-
+    expect(() => { container.addFile(); }).not.toThrow(ReferenceError);
+    expect(container.state.file.type);
   })
 });
 
@@ -58,13 +64,13 @@ describe('DataTable Valid Check', () => {
 
   });
 
-  it('Room have correct type data', () =>{
+  it('Room have correct type data', () => {
 
   });
   it('Room have correct talk data', () => {
 
   });
-  it('Room was sorted by time', () =>{
-    
+  it('Room was sorted by time', () => {
+
   })
 })
