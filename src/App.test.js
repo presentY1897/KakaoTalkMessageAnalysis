@@ -39,10 +39,10 @@ describe('Uploaded Text Valid Check', () => {
   const { container, getByText, getByPlaceholderText } = render(<TalkFile />);
  // convert data by uploaded file
 
-  it('Data was kakaoTalk result', () => {
+  it('Data was kakaotalk result', () => {
 
   });
-  it('Talk Type Check', () => {
+  it('Talk type check', () => {
 
   })
 });
