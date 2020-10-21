@@ -14,13 +14,19 @@ describe('<FileUpload />', () => {
 
 describe('Uploaded Text Valid Check', () => {
   const { container, getByText, getByPlaceholderText } = render(<TalkFile />);
- // convert data by uploaded file
+  // convert data by uploaded file
 
-  it('Data was kakaoTalk result', () => {
 
+  it('Data was kakaotalk result error', () => {
+    expect(() => { container.addFile(); }).toThrow(ReferenceError);
   });
-  it('Talk Type Check', () => {
-
+  it('Data was kakaotalk result correct', () => {
+    expect(() => { container.addFile(); }).not.toThrow(ReferenceError);
+    expect(container.state.file.type);
+  });
+  it('Talk type check', () => {
+    expect(() => { container.addFile(); }).not.toThrow(ReferenceError);
+    expect(container.state.file.type);
   })
 });
 
@@ -35,13 +41,13 @@ describe('DataTable Valid Check', () => {
 
   });
 
-  it('Room have correct type data', () =>{
+  it('Room have correct type data', () => {
 
   });
   it('Room have correct talk data', () => {
 
   });
-  it('Room was sorted by time', () =>{
+  it('Room was sorted by time', () => {
 
   })
 })
