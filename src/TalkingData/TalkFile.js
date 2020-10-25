@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 
 class TalkFile extends Component {
-  state = {
-    rawFile: null,
-    structedData: null,
-  };
-
   render(){
     return (
-      <div className="TalkFile">
+      <div>
+        <p>{this.props.rawFile === null ? '없음' : this.props.rawFile.name}</p>
       </div>
     );
   }
