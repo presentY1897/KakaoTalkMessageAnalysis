@@ -1,10 +1,21 @@
 import React, { Component } from 'react';
+import FileNameBlock from './FileNameBlock';
 
 class TalkFile extends Component {
+  getFileName = function(){
+    let result = '';
+    if(this.props.rawFile !== null){
+      result = this.props.rawFile.name;
+    } else {
+      // file is loaded
+      result = ''
+    }
+    return result;
+  }
   render(){
     return (
       <div>
-        <p>{this.props.rawFile === null ? '없음' : this.props.rawFile.name}</p>
+        <FileNameBlock text={this.getFileName()}></FileNameBlock>
       </div>
     );
   }
