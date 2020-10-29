@@ -7,18 +7,19 @@ class FileUpload extends Component {
   };
 
   inputChange = e => {
+      console.log('state changed');
       const file = e.target.files[0];
       this.setState({file: file});
-  }
+  };
   render(){
     return (
-      <div className="FileUpload">
+      <div>
         <input type='file' placeholder='파일을 올려주세요' className="FileInputBox" onChange={this.inputChange}/>
         <button type="submit" className="FileUploadButton">확인</button>
-        <TalkFile rawFile={this.state.file}></TalkFile>
+        <TalkFile rawFile={this.state.file}/>
       </div>
     );
-  }
+  };
 }
 
 export default FileUpload;

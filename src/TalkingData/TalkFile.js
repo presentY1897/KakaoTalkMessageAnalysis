@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
+import BarGraph from '../DataChart/BarGraph';
 import Analyzer from './Analyzer';
 import FileNameBlock from './FileNameBlock';
 
 class TalkFile extends Component {
-  talkData = null;
+  constructor(props){
+    super(props);
+    this.state = {
+      file: null,
+    }
+  }
 
-  getFileName = function () {
+  getFileName = function (file) {
+    console.log('name load');
     let result = '';
     const analyzer = new Analyzer();
 
-    if (this.props.rawFile !== null) {
-      result = this.props.rawFile.name;
-      this.talkData = this.props.rawFile.text().then(result => analyzer.analyzingRawText(result));
+    if (file !== null) {
+      result = file.name;
+      file.text().then(result => {this.setState({file: analyzer.analyzingRawText(result)})});
     } else {
       result = '';
     }
@@ -20,7 +27,8 @@ class TalkFile extends Component {
   render() {
     return (
       <div>
-        <FileNameBlock text={this.getFileName()}></FileNameBlock>
+        <FileNameBlock text={this.getFileName(this.props.rawFile)}></FileNameBlock>
+        <BarGraph data={this.state.file}></BarGraph>
       </div>
     );
   }
