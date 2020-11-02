@@ -8,22 +8,23 @@ class BarGraph extends Component {
     };
     getBarData = function () {
         let dataset = {
-            label: '#사람별 대화량',
             data: [],
             barPercentage: 0.5,
             barThickness: 6,
             maxBarThickness: 8,
             minBarLength: 2,
         };
+        let labels = [];
         let data = {
-            dataset: [dataset]
+            labels: labels,
+            dataset: [dataset],
         };
 
         if (this.props.data !== null && this.props.data !== this.state.data) {
             this.setState({
                 data: this.props.data,
             });
-            dataset.data = this.props.data.reduce((acc, cur) => {
+            const sum =this.props.data.reduce((acc, cur) => {
                 let person = acc.find(item => item.key === cur.person);
                 if (person !== undefined) {
                     person.count++;
@@ -35,7 +36,13 @@ class BarGraph extends Component {
                     acc.push(person);
                 }
                 return acc;
-            }, []).map(item => item.count);
+            }, []);
+            dataset.data = sum.map(item => item.count);
+            data.labels = sum.map((item, idx) => {
+                const _name = item.key.name;
+                if(_name === undefined) return `#${idx}`;
+                else return `#${_name}`;
+            });
         };
         return data;
     };
