@@ -14,7 +14,7 @@ class TalkFile extends Component {
 
   componentDidUpdate(preProps){
     console.log('check');
-    if (preProps.file !== this.props.file) {
+    if (preProps.rawFile !== this.props.rawFile) {
       const file = this.props.rawFile;
       const analyzer = new Analyzer();
       file.text().then(result => {this.setState({file: analyzer.analyzingRawText(result)})});
@@ -27,8 +27,6 @@ class TalkFile extends Component {
 
     if (file !== null) {
       result = file.name;
-      //this.setState({file: file.name});
-      //file.text().then(result => {this.setState({file: analyzer.analyzingRawText(result)})});
     } else {
       result = '';
     }
