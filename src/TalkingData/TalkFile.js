@@ -13,11 +13,10 @@ class TalkFile extends Component {
   }
 
   componentDidUpdate(preProps){
-    console.log('check');
+    console.log('check : ' + (preProps.rawFile !== this.props.rawFile));
     if (preProps.rawFile !== this.props.rawFile) {
       const file = this.props.rawFile;
-      const analyzer = new Analyzer();
-      file.text().then(result => {this.setState({file: analyzer.analyzingRawText(result)})});
+      file.text().then(result => {this.setState({file: new Analyzer().analyzingRawText(result)})});
     } 
   }
 

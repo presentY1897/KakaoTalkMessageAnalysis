@@ -4,27 +4,21 @@ import { Bar } from "react-chartjs-2";
 class BarGraph extends Component {
     constructor(props) {
         super(props);
-        this.state = {data: null,};
+        this.state = {
+            data: {
+                dataset: [{
+                    data: [10, 20],
+                    borderWidth: 1,
+                    backgroundColor: ["#11b288", "#207ac7", "#207ac7", "#207ac7", "#d6d6d6", "#d6d6d6", "#d6d6d6", "#d6d6d6"],
+                },],
+                labels: ['테스트', '테스트2'],
+            },
+        }
     };
-    getBarData = function () {
-        let dataset = {
-            data: [],
-            barPercentage: 0.5,
-            barThickness: 6,
-            maxBarThickness: 8,
-            minBarLength: 2,
-        };
-        let labels = [];
-        let data = {
-            labels: labels,
-            dataset: [dataset],
-        };
-
-        if (this.props.data !== null && this.props.data !== this.state.data) {
-            this.setState({
-                data: this.props.data,
-            });
-            const sum =this.props.data.reduce((acc, cur) => {
+    componentDidUpdate = function (preProps) {
+        if (preProps.data !== this.props.data) {
+            console.log('change data');
+            const sum = this.props.data.reduce((acc, cur) => {
                 let person = acc.find(item => item.key === cur.person);
                 if (person !== undefined) {
                     person.count++;
@@ -37,20 +31,27 @@ class BarGraph extends Component {
                 }
                 return acc;
             }, []);
-            dataset.data = sum.map(item => item.count);
-            data.labels = sum.map((item, idx) => {
-                const _name = item.key.name;
-                if(_name === undefined) return `#${idx}`;
-                else return `#${_name}`;
+            this.setState({
+                data: {
+                    labels: sum.map((item, idx) => {
+                        const _name = item.key.name;
+                        if (_name === undefined) return `#${idx}`;
+                        else return `#${_name}`;
+                    }),
+                    dataset: [{
+                        data: sum.map(item => item.count),
+                        backgroundColor: ["#11b288", "#207ac7", "#207ac7", "#207ac7", "#d6d6d6", "#d6d6d6", "#d6d6d6", "#d6d6d6"],
+                        borderWidth: 1,
+                    }]
+                }
             });
         };
-        return data;
     };
 
     render() {
         return (
             <div>
-                <Bar data={this.getBarData()}></Bar>
+                <Bar data={this.state.data}></Bar>
             </div>
         );
     };
