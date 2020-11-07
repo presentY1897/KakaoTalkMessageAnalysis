@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Bar } from "react-chartjs-2";
+import { HorizontalBar } from "react-chartjs-2";
 
 class BarGraph extends Component {
     constructor(props) {
@@ -9,7 +9,6 @@ class BarGraph extends Component {
                 datasets: [{
                     label: '# 테스트',
                     data: [10, 20],
-                    borderWidth: 1,
                     backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)"],
                 },],
                 labels: ['테스트', '테스트2'],
@@ -38,11 +37,10 @@ class BarGraph extends Component {
                         const _name = item.key.name;
                         if (_name === undefined) return `${idx}`;
                         else return `${_name}`;
-                    }),
+                    }).sort((a, b) => a.count > b.count),
                     datasets: [{
-                        data: sum.map(item => item.count),
+                        data: sum.map(item => item.count).sort((a, b) => a.count > b.count),
                         backgroundColor: ["#11b288", "#207ac7", "#207ac7", "#207ac7", "#d6d6d6", "#d6d6d6", "#d6d6d6", "#d6d6d6"],
-                        borderWidth: 1,
                     }]
                 }
             });
@@ -51,7 +49,7 @@ class BarGraph extends Component {
 
     render() {
         return (
-            <Bar data={this.state.data}></Bar>
+            <HorizontalBar data={this.state.data}></HorizontalBar>
         );
     };
 }
