@@ -6,10 +6,11 @@ class BarGraph extends Component {
         super(props);
         this.state = {
             data: {
-                dataset: [{
+                datasets: [{
+                    label: '# 테스트',
                     data: [10, 20],
                     borderWidth: 1,
-                    backgroundColor: ["#11b288", "#207ac7", "#207ac7", "#207ac7", "#d6d6d6", "#d6d6d6", "#d6d6d6", "#d6d6d6"],
+                    backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)"],
                 },],
                 labels: ['테스트', '테스트2'],
             },
@@ -35,10 +36,10 @@ class BarGraph extends Component {
                 data: {
                     labels: sum.map((item, idx) => {
                         const _name = item.key.name;
-                        if (_name === undefined) return `#${idx}`;
-                        else return `#${_name}`;
+                        if (_name === undefined) return `${idx}`;
+                        else return `${_name}`;
                     }),
-                    dataset: [{
+                    datasets: [{
                         data: sum.map(item => item.count),
                         backgroundColor: ["#11b288", "#207ac7", "#207ac7", "#207ac7", "#d6d6d6", "#d6d6d6", "#d6d6d6", "#d6d6d6"],
                         borderWidth: 1,
@@ -50,9 +51,7 @@ class BarGraph extends Component {
 
     render() {
         return (
-            <div>
-                <Bar data={this.state.data}></Bar>
-            </div>
+            <Bar data={this.state.data}></Bar>
         );
     };
 }
