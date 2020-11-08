@@ -17,7 +17,6 @@ class BarGraph extends Component {
     };
     componentDidUpdate = function (preProps) {
         if (preProps.data !== this.props.data) {
-            console.log('change data');
             const sum = this.props.data.reduce((acc, cur) => {
                 let person = acc.find(item => item.key === cur.person);
                 if (person !== undefined) {
@@ -48,8 +47,29 @@ class BarGraph extends Component {
     };
 
     render() {
+        const options = {
+            legend: {
+                display: false, // label 숨기기
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        min: 0, // 스케일에 대한 최솟갓 설정, 0 부터 시작
+                        stepSize: 1, // 스케일에 대한 사용자 고정 정의 값
+                    }
+                }]
+            },
+            maintainAspectRatio: false ,// false로 설정 시 사용자 정의 크기에 따라 그래프 크기가 결정됨.
+            responsive: false,
+        };
+
+        const containerCss = {
+            margin: '0 auto'
+        }
         return (
-            <HorizontalBar data={this.state.data}></HorizontalBar>
+            <div style={containerCss}>
+                <HorizontalBar data={this.state.data} options={options} width={400}></HorizontalBar>
+            </div>
         );
     };
 }

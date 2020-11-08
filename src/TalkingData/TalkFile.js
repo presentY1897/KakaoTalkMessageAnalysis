@@ -1,4 +1,3 @@
-import { computeHeadingLevel } from '@testing-library/dom';
 import React, { Component } from 'react';
 import BarGraph from '../DataChart/BarGraph';
 import Analyzer from './Analyzer';
@@ -13,7 +12,6 @@ class TalkFile extends Component {
   }
 
   componentDidUpdate(preProps){
-    console.log('check : ' + (preProps.rawFile !== this.props.rawFile));
     if (preProps.rawFile !== this.props.rawFile) {
       const file = this.props.rawFile;
       file.text().then(result => {this.setState({file: new Analyzer().analyzingRawText(result)})});
@@ -21,7 +19,6 @@ class TalkFile extends Component {
   }
 
   getFileName = function (file) {
-    console.log('name load');
     let result = '';
 
     if (file !== null) {
