@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import BarGraph from '../DataChart/BarGraph';
+import Graph from '../DataChart/Graph';
 import Analyzer from './Analyzer';
 import FileNameBlock from './FileNameBlock';
 
@@ -33,6 +34,7 @@ class TalkFile extends Component {
       <div>
         <FileNameBlock text={this.getFileName(this.props.rawFile)}></FileNameBlock>
         <BarGraph data={this.state.file}></BarGraph>
+        <Graph data={this.state.file}></Graph>
       </div>
     );
   }
