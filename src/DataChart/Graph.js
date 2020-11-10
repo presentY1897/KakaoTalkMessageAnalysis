@@ -53,7 +53,8 @@ class BarGraph extends Component {
                 }
                 return arr;
             }
-            const timeStep = 1 * 24 * 60 * 60000;
+            const divideCount = 100;
+            const timeStep = (maxDate - minDate) / divideCount//1 * 24 * 60 * 60000;
             const sum = personSum.map(person => {
                 person.data = person.chat.reduce((acc, cur) => {
                     const curTime = new Date(cur.time);
@@ -72,9 +73,11 @@ class BarGraph extends Component {
                             const _name = person.key.name;
                             let name = `${_name}`;
                             if (_name === undefined) name = `${idx}`;
+                            const getColor = () => Math.random() *  255;
+                            const randomColor = `rgba(${getColor()}, ${getColor()}, ${getColor()}, 0.2)`
                             return {
-                                borderColor: 'rgba(255, 99, 132, 0.2)',
-                                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                borderColor: randomColor,
+                                backgroundColor: randomColor,
                                 data: person.data.map(p => p.count),
                                 fill: false,
                                 label: name,
@@ -107,7 +110,7 @@ class BarGraph extends Component {
         }
         return (
             <div style={containerCss} >
-                <Line data={this.state.data} options={options} > </Line>
+                <Line data={this.state.data} options={options} height={700}> </Line>
             </div>
         );
     };
