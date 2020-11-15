@@ -13,7 +13,7 @@ class TalkFile extends Component {
   }
 
   componentDidUpdate(preProps){
-    if (preProps.rawFile !== this.props.rawFile) {
+    if (preProps.rawFile !== this.props.rawFile && this.props.rawFile !== undefined && this.props.rawFile !== null) {
       const file = this.props.rawFile;
       file.text().then(result => {this.setState({file: new Analyzer().analyzingRawText(result)})});
     } 
@@ -22,13 +22,14 @@ class TalkFile extends Component {
   getFileName = function (file) {
     let result = '';
 
-    if (file !== null) {
+    if (file !== null && file !== undefined) {
       result = file.name;
     } else {
       result = '';
     }
     return result;
   }
+
   render() {
     return (
       <div>
