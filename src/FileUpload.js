@@ -7,7 +7,6 @@ class FileUpload extends Component {
   };
 
   inputChange = e => {
-      console.log('state changed');
       const file = e.target.files[0];
       this.setState({file: file});
   };

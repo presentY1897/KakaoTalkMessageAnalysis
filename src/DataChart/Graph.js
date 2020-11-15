@@ -54,7 +54,7 @@ class BarGraph extends Component {
                 return arr;
             }
             const divideCount = 100;
-            const timeStep = (maxDate - minDate) / divideCount//1 * 24 * 60 * 60000;
+            const timeStep = (maxDate - minDate) / divideCount;//1 * 24 * 60 * 60000;
             const sum = personSum.map(person => {
                 person.data = person.chat.reduce((acc, cur) => {
                     const curTime = new Date(cur.time);
