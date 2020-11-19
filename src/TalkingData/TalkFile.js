@@ -7,7 +7,7 @@ class TalkFile extends Component {
     super(props);
     this.state = {
       file: this.props.rawFile,
-      name: this.props.rawFile.name,
+      name: this.getFileName(this.props.rawFile),
     };
   }
 
@@ -22,9 +22,13 @@ class TalkFile extends Component {
     return result;
   }
 
+  cardClickEvent = () => {
+    this.props.clickEvent(this.state.file);
+  }
+
   render() {
     return (
-      <Card>
+      <Card onClick={this.cardClickEvent}>
         <div>
           <Summary name={this.props.rawFile.name}></Summary>
         </div>

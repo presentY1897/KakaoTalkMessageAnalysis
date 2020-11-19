@@ -12,21 +12,19 @@ class TalkFileContainers extends Component {
 
   componentDidUpdate(preProps) {
     if (preProps !== this.props && this.props.addFile !== undefined) {
-      console.log('check');
       const addedFiles = this.state.files;
       addedFiles.push(this.props.addFile);
       this.setState({ files: addedFiles });
-      console.log(this.state.files);
     }
   }
 
   render() {
     return (
       <div>
-        <GridList>
+        <GridList cellHeight={300} cols={4}>
           {this.state.files.map((file, idx) => 
           <GridListTile key={idx} >
-            <TalkFile rawFile={file}></TalkFile>
+            <TalkFile rawFile={file} clickEvent={this.props.selectFileEvent}></TalkFile>
           </GridListTile>
           )}
         </GridList>

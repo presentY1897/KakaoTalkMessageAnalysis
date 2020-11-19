@@ -1,17 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import FileUpload from './FileUpload';
+import TalkDataViewer from './DataChart/TalkDataViewer';
 
 function App() {
+  let selectedFile = null;
+  const selectTalkFile = file => selectedFile = file;
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <FileUpload/>
+        <FileUpload fileChanged={selectTalkFile}/>
       </header>
+      <TalkDataViewer selectedFile={selectedFile}></TalkDataViewer>
     </div>
   );
 }
-  
+
 export default App;

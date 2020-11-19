@@ -15,7 +15,7 @@ class FileUpload extends Component {
       <div>
         <input type='file' placeholder='파일을 올려주세요' className="FileInputBox" onChange={this.inputChange}/>
         <button type="submit" className="FileUploadButton">확인</button>
-        <TalkFilesContainer addFile = {this.state.file}></TalkFilesContainer>
+        <TalkFilesContainer addFile = {this.state.file} selectFileEvent={this.props.fileChanged}></TalkFilesContainer>
       </div>
     );
   };
