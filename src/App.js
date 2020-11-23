@@ -1,17 +1,30 @@
 import React from 'react';
 import './App.css';
-import FileUpload from './FileUpload';
-import TalkDataViewer from './DataChart/TalkDataViewer';
+import ExplainTab from './Explain/ExplainTab';
+import FileUploadTab from './TalkingData/FileUploadTab';
+import DataViewerTab from './DataChart/DataViewerTab';
+import { Row, Container, Col } from 'react-bootstrap';
 
 function App() {
-  let selectedFile = null;
-  const selectTalkFile = file => selectedFile = file;
   return (
-    <div className="App">
-      <header className="App-header">
-        <FileUpload fileChanged={selectTalkFile}/>
-      </header>
-      <TalkDataViewer selectedFile={selectedFile}></TalkDataViewer>
+    <div>
+      <Container fluid style={{ backgroundColor: '#d5d5d5' }}>
+        <Row>
+          <Col>
+            <ExplainTab></ExplainTab>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <FileUploadTab></FileUploadTab>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <DataViewerTab></DataViewerTab>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }

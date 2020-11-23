@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TalkFilesContainer from './TalkingData/TalkFilesContainer';
+import { Figure, Button } from 'react-bootstrap';
 
 class FileUpload extends Component {
   state = {
@@ -14,8 +14,10 @@ class FileUpload extends Component {
     return (
       <div>
         <input type='file' placeholder='파일을 올려주세요' className="FileInputBox" onChange={this.inputChange}/>
-        <button type="submit" className="FileUploadButton">확인</button>
-        <TalkFilesContainer addFile = {this.state.file} selectFileEvent={this.props.fileChanged}></TalkFilesContainer>
+        <Figure>
+          파일을 업로드 해주세요.
+        </Figure>
+        <Button type="submit">확인</Button>
       </div>
     );
   };

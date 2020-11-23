@@ -23,9 +23,9 @@ class TalkFileContainers extends Component {
       <div>
         <GridList cellHeight={300} cols={4}>
           {this.state.files.map((file, idx) => 
-          <GridListTile key={idx} >
-            <TalkFile rawFile={file} clickEvent={this.props.selectFileEvent}></TalkFile>
-          </GridListTile>
+            <GridListTile key={idx} >
+              <TalkFile rawFile={file} clickEvent={this.props.selectFileEvent}></TalkFile>
+            </GridListTile>
           )}
         </GridList>
       </div>
