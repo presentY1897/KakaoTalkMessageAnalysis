@@ -4,6 +4,7 @@ import ExplainTab from './Explain/ExplainTab';
 import FileUploadTab from './TalkingData/FileUploadTab';
 import DataViewerTab from './DataChart/DataViewerTab';
 import { Row, Container, Col } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
