@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import TalkFile from './TalkFile';
 
 class TalkFileContainers extends Component {
@@ -19,14 +19,29 @@ class TalkFileContainers extends Component {
   }
 
   render() {
+    const col = 4;
+    let count = 0;
     return (
       <div>
-        <Container cellHeight={300} cols={4}>
-          {this.state.files.map((file, idx) => 
-            <div key={idx} >
-              <TalkFile rawFile={file} clickEvent={this.props.selectFileEvent}></TalkFile>
-            </div>
-          )}
+        <Container>
+          {this.props.files !== undefined ? this.props.files.reduce((acc, cur) => {
+            if (count === 0) {
+              acc.push([cur]);
+            } else {
+              acc[acc.length - 1].push(cur);
+            }
+            count++;
+            if (count === 4) count = 0;
+            return acc;
+          }, []).map((arr) => {
+            return <Row>
+              {arr.map((file) =>
+                <Col>
+                  <TalkFile rawFile={file} clickEvent={this.props.selectFileEvent}></TalkFile>
+                </Col>
+              )}
+            </Row>
+          }) : ''}
         </Container>
       </div>
     );
