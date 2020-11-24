@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Summary from './Summary';
-import Card from '@material-ui/core/Card'
+import { Card } from 'react-bootstrap'
 
 class TalkFile extends Component {
   constructor(props) {

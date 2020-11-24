@@ -17,7 +17,7 @@ class FileUpload extends Component {
         <Figure>
           파일을 업로드 해주세요.
         </Figure>
-        <Button type="submit">확인</Button>
+        <Button variant='secondary' type="submit">확인</Button>
       </div>
     );
   };

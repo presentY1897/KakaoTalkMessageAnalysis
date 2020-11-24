@@ -1,5 +1,5 @@
-import { GridList, GridListTile } from '@material-ui/core';
 import React, { Component } from 'react';
+import { Container } from 'react-bootstrap';
 import TalkFile from './TalkFile';
 
 class TalkFileContainers extends Component {
@@ -21,13 +21,13 @@ class TalkFileContainers extends Component {
   render() {
     return (
       <div>
-        <GridList cellHeight={300} cols={4}>
+        <Container cellHeight={300} cols={4}>
           {this.state.files.map((file, idx) => 
-            <GridListTile key={idx} >
+            <div key={idx} >
               <TalkFile rawFile={file} clickEvent={this.props.selectFileEvent}></TalkFile>
-            </GridListTile>
+            </div>
           )}
-        </GridList>
+        </Container>
       </div>
     );
   }
