@@ -31,7 +31,7 @@ class TalkFileContainers extends Component {
               acc[acc.length - 1].push(cur);
             }
             count++;
-            if (count === 4) count = 0;
+            if (count === col) count = 0;
             return acc;
           }, []).map((arr) => {
             return <Row>

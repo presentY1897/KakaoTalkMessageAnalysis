@@ -30,7 +30,7 @@ class TalkFile extends Component {
     return (
       <Card onClick={this.cardClickEvent}>
         <div>
-          <Summary name={this.props.rawFile.name}></Summary>
+          <Summary name={this.props.rawFile.name} duration={this.props.rawFile.duration} people={this.props.rawFile.people}></Summary>
         </div>
       </Card>
     );
