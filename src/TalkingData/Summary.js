@@ -8,11 +8,14 @@ class Summary extends Component {
             const endDate = new Date(dur[1]);
             return `${startDate.getFullYear()}-${startDate.getMonth()}-${startDate.getDay()} ~ ${endDate.getFullYear()}-${endDate.getMonth()}-${endDate.getDay()}`;
         }
+        const getPeopleNameString = (people) => {
+            return people.map(person => person.name).join(',');
+        }
         return (
             <Container>
                 <h3 component='h3' varient='h3'>{this.props.name}</h3>
                 <h5 variant="subtitle1" color="textSecondary">기간 : {getDurationString(this.props.duration)}</h5>
-                <h5 variant="subtitle1" color="textSecondary">참여자: {this.props.people}</h5>
+                <h5 variant="subtitle1" color="textSecondary">참여자: {getPeopleNameString(this.props.people)}</h5>
             </Container>
         );
     }
