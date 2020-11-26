@@ -1,5 +1,7 @@
-import { Container, Jumbotron } from 'react-bootstrap';
+import { Jumbotron } from 'react-bootstrap';
 import React, { Component } from 'react';
+import BarGraph from './BarGraph';
+import Graph from './Graph';
 
 class TalkDataViewer extends Component {
     render() {
@@ -7,6 +9,8 @@ class TalkDataViewer extends Component {
         return (
             <Jumbotron>
                 <h1>{name}</h1>
+                <BarGraph></BarGraph>
+                <Graph></Graph>
             </Jumbotron>
         )
     }
