@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Collapse } from 'react-bootstrap';
+import TalkDataViewer from '../DataChart/TalkDataViewer';
 import TalkFile from './TalkFile';
 
 class TalkFileContainers extends Component {
@@ -7,6 +8,8 @@ class TalkFileContainers extends Component {
     super(props);
     this.state = {
       files: [],
+      viewerOpen: false,
+      viewerFile: undefined,
     }
   }
 
@@ -21,9 +24,17 @@ class TalkFileContainers extends Component {
   render() {
     const col = 4;
     let count = 0;
+    const clickCard = (file) => {this.setState({viewerOpen: true, viewerFile:file})}
     return (
       <div>
         <Container>
+          <Collapse in={this.state.viewerOpen}>
+            <Row>
+              <Col>
+                <TalkDataViewer file={this.state.viewerFile}></TalkDataViewer>
+              </Col>
+            </Row>
+          </Collapse>
           {this.props.files !== undefined ? this.props.files.reduce((acc, cur) => {
             if (count === 0) {
               acc.push([cur]);
@@ -37,7 +48,7 @@ class TalkFileContainers extends Component {
             return <Row>
               {arr.map((file) =>
                 <Col>
-                  <TalkFile rawFile={file} clickEvent={this.props.selectFileEvent}></TalkFile>
+                  <TalkFile rawFile={file} clickEvent={clickCard}></TalkFile>
                 </Col>
               )}
             </Row>
