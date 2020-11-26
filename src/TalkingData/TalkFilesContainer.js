@@ -24,7 +24,10 @@ class TalkFileContainers extends Component {
   render() {
     const col = 4;
     let count = 0;
-    const clickCard = (file) => {this.setState({viewerOpen: true, viewerFile:file})}
+    const clickCard = (file) => {
+      if(this.state.viewerOpen && this.state.viewerFile === file) this.setState({viewerOpen: false, viewerFile:file})
+      else this.setState({viewerOpen: true, viewerFile:file})
+    }
     return (
       <div>
         <Container>
