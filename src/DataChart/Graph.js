@@ -101,8 +101,7 @@ class Graph extends Component {
                         stepSize: 1, // 스케일에 대한 사용자 고정 정의 값
                     }
                 }]
-            },
-            maintainAspectRatio: false, // false로 설정 시 사용자 정의 크기에 따라 그래프 크기가 결정됨.
+            }
         };
 
         const containerCss = {
@@ -110,7 +109,7 @@ class Graph extends Component {
         }
         return (
             <div style={containerCss} >
-                <Line data={this.state.data} options={options} height={700}> </Line>
+                <Line data={this.state.data} options={options}> </Line>
             </div>
         );
     };

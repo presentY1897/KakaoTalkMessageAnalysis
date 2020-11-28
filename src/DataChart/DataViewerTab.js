@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import TalkFilesContainer from '../TalkingData/TalkFilesContainer';
-import TalkDataViewer from './TalkDataViewer'
 import { Container } from 'react-bootstrap';
 
 class DataViewerTab extends Component {
