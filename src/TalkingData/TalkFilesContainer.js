@@ -34,7 +34,7 @@ class TalkFileContainers extends Component {
           <Collapse in={this.state.viewerOpen}>
             <Row>
               <Col>
-                <TalkDataViewer file={this.state.viewerFile}></TalkDataViewer>
+                <TalkDataViewer file={this.state.viewerFile} click={clickCard}></TalkDataViewer>
               </Col>
             </Row>
           </Collapse>
