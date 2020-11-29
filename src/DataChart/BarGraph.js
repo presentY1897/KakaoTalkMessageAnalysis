@@ -16,34 +16,34 @@ class BarGraph extends Component {
         }
     };
     componentDidUpdate = function (preProps) {
-        if (preProps.data !== this.props.data) {
-            const sum = this.props.data.reduce((acc, cur) => {
-                let person = acc.find(item => item.key === cur.person);
-                if (person !== undefined) {
-                    person.count++;
-                } else {
-                    person = {
-                        key: cur.person,
-                        count: 1,
-                    };
-                    acc.push(person);
-                }
-                return acc;
-            }, []);
-            this.setState({
-                data: {
-                    labels: sum.map((item, idx) => {
-                        const _name = item.key.name;
-                        if (_name === undefined) return `${idx}`;
-                        else return `${_name}`;
-                    }).sort((a, b) => a.count > b.count),
-                    datasets: [{
-                        data: sum.map(item => item.count).sort((a, b) => a.count > b.count),
-                        backgroundColor: ["#11b288", "#207ac7", "#207ac7", "#207ac7", "#d6d6d6", "#d6d6d6", "#d6d6d6", "#d6d6d6"],
-                    }]
-                }
-            });
-        };
+        // if (preProps.data !== this.props.data) {
+        //     const sum = this.props.data.reduce((acc, cur) => {
+        //         let person = acc.find(item => item.key === cur.person);
+        //         if (person !== undefined) {
+        //             person.count++;
+        //         } else {
+        //             person = {
+        //                 key: cur.person,
+        //                 count: 1,
+        //             };
+        //             acc.push(person);
+        //         }
+        //         return acc;
+        //     }, []);
+        //     this.setState({
+        //         data: {
+        //             labels: sum.map((item, idx) => {
+        //                 const _name = item.key.name;
+        //                 if (_name === undefined) return `${idx}`;
+        //                 else return `${_name}`;
+        //             }).sort((a, b) => a.count > b.count),
+        //             datasets: [{
+        //                 data: sum.map(item => item.count).sort((a, b) => a.count > b.count),
+        //                 backgroundColor: ["#11b288", "#207ac7", "#207ac7", "#207ac7", "#d6d6d6", "#d6d6d6", "#d6d6d6", "#d6d6d6"],
+        //             }]
+        //         }
+        //     });
+        // };
     };
 
     render() {
@@ -58,9 +58,7 @@ class BarGraph extends Component {
                         stepSize: 1, // 스케일에 대한 사용자 고정 정의 값
                     }
                 }]
-            },
-            maintainAspectRatio: false ,// false로 설정 시 사용자 정의 크기에 따라 그래프 크기가 결정됨.
-            responsive: false,
+            }
         };
 
         const containerCss = {
@@ -68,7 +66,7 @@ class BarGraph extends Component {
         }
         return (
             <div style={containerCss}>
-                <HorizontalBar data={this.state.data} options={options} width={400}></HorizontalBar>
+                <HorizontalBar data={this.props.data} options={options}></HorizontalBar>
             </div>
         );
     };
