@@ -6,7 +6,7 @@ class Summary extends Component {
         const getDurationString = (dur) => {
             const startDate = new Date(dur[0]);
             const endDate = new Date(dur[1]);
-            return `${startDate.getFullYear()}-${startDate.getMonth()}-${startDate.getDay()} ~ ${endDate.getFullYear()}-${endDate.getMonth()}-${endDate.getDay()}`;
+            return `${startDate.getFullYear()}-${startDate.getMonth()}-${startDate.getDate()} ~ ${endDate.getFullYear()}-${endDate.getMonth()}-${endDate.getDate()}`;
         }
         const getPeopleNameString = (people) => {
             return people.map(person => person.name).join(',');
