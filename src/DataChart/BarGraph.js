@@ -58,9 +58,7 @@ class BarGraph extends Component {
                         stepSize: 1, // 스케일에 대한 사용자 고정 정의 값
                     }
                 }]
-            },
-            maintainAspectRatio: false ,// false로 설정 시 사용자 정의 크기에 따라 그래프 크기가 결정됨.
-            responsive: false,
+            }
         };
 
         const containerCss = {
@@ -68,7 +66,7 @@ class BarGraph extends Component {
         }
         return (
             <div style={containerCss}>
-                <HorizontalBar data={this.state.data} options={options} width={400}></HorizontalBar>
+                <HorizontalBar data={this.state.data} options={options}></HorizontalBar>
             </div>
         );
     };
