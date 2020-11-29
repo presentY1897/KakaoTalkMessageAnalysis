@@ -16,7 +16,7 @@ class TalkDataViewer extends Component {
         const durationStr = this.props.file !== undefined ? getDurationString(this.props.file.duration) : '';
         return (
             <Jumbotron>
-                <Button>닫기</Button>
+                <Button onClick={this.props.click}>닫기</Button>
                 <h1>{name}</h1>
                 <h3>기간 : {durationStr}</h3>
                 <TalkerList people={people}></TalkerList>
