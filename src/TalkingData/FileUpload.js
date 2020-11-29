@@ -13,7 +13,7 @@ class FileUpload extends Component {
   render(){
     return (
       <div>
-        <input type='file' placeholder='파일을 올려주세요' className="FileInputBox" onChange={this.inputChange}/>
+        <input type='file' placeholder='파일을 올려주세요' className="FileInputBox" onChange={this.inputChange} style={{display:'none'}}/>
         <Figure>
           파일을 업로드 해주세요.
         </Figure>
