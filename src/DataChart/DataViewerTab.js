@@ -7,7 +7,7 @@ class DataViewerTab extends Component {
         const randomDataCreate = () => {
             let people = [];
             const minPeople = 2;
-            const maxPeople = 100;
+            const maxPeople = 20;
             const peopleCount = Math.max(Math.floor(Math.random() * maxPeople), minPeople);
             const maxTalkperDay = 1000;
             const diffDate = Math.max(Math.floor(Math.random() * 100), 1);
