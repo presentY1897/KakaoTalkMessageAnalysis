@@ -12,7 +12,6 @@ class DataViewerTab extends Component {
             const maxTalkperDay = 1000;
             const diffDate = Math.max(Math.floor(Math.random() * 100), 1);
             const duration = [new Date(new Date() - diffDate * 24 * 60 * 60 * 1000), new Date()];
-            console.log(duration);
             for(let i = 0; i < peopleCount; i++){
                 const talkPerTime = (() => {
                     let talks = [];
