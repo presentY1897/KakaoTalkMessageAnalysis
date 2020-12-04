@@ -11,23 +11,23 @@ class TalkDataViewer extends Component {
         people: [],
         peopleColor: [],
     };
-    createBarGraphData() {
+    createBarGraphData(colors) {
         return {
             datasets: [{
                 data: this.props.file.people.filter(person => person.active).map(person => person.data.total.count),
-                backgroundColor: this.state.peopleColor,
+                backgroundColor: colors !== undefined ? colors : this.state.peopleColor,
             }],
             labels: this.props.file.people.filter(person => person.active).map(person => person.name)
         };
     };
-    createLineGraphData() {
+    createLineGraphData(colors) {
         return {
             datasets: this.props.file.people.filter(person => person.active).map((person, idx) => {
                 return {
                     label: person.name,
                     data: person.data.perTime.map(talk => talk.count),
                     fill: false,
-                    backgroundColor: this.state.peopleColor[idx],
+                    backgroundColor: colors !== undefined ? colors[idx] : this.state.peopleColor[idx],
                 }
             }),
             labels: this.props.file.people[0].data.perTime.map(talk => `${talk.date.getFullYear()}-${talk.date.getMonth()}-${talk.date.getDate()}`)
@@ -46,13 +46,16 @@ class TalkDataViewer extends Component {
     };
     componentDidUpdate(preProps) {
         if (preProps.file !== this.props.file) {
-            this.setState({ people: this.props.file !== undefined ? this.props.file.people.map(person => { person.active = true; return person }) : [] });
             const getColor = () => Math.random() * 255;
-            this.setState({ peopleColor: this.props.file !== undefined ? this.props.file.people.map(() => `rgba(${getColor()}, ${getColor()}, ${getColor()}, 0.4)`) : [] });
-            this.setState({ barData: this.props.file !== undefined ? this.createBarGraphData() : { datasets: [], labels: [] } });
-            this.setState({ lineData: this.props.file !== undefined ? this.createLineGraphData() : { datasets: [], labels: [] } });
+            const peopleColor = this.props.file !== undefined ? this.props.file.people.map(() => `rgba(${getColor()}, ${getColor()}, ${getColor()}, 0.4)`) : [];
+            this.setState({
+                people: this.props.file !== undefined ? this.props.file.people.map(person => { person.active = true; return person }) : [],
+                peopleColor: peopleColor
+            });
+            this.setState({ barData: this.props.file !== undefined ? this.createBarGraphData(peopleColor) : { datasets: [], labels: [] } });
+            this.setState({ lineData: this.props.file !== undefined ? this.createLineGraphData(peopleColor) : { datasets: [], labels: [] } });
         }
-    }
+    };
 
     render() {
         const name = this.props.file !== undefined ? this.props.file.name : '';
