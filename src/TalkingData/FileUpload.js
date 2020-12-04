@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Figure, Button } from 'react-bootstrap';
+import { Button, Jumbotron } from 'react-bootstrap';
 
 class FileUpload extends Component {
   state = {
@@ -14,10 +14,10 @@ class FileUpload extends Component {
     return (
       <div>
         <input type='file' placeholder='파일을 올려주세요' className="FileInputBox" onChange={this.inputChange} style={{ display: 'none' }} />
-        <Figure>
-          파일을 업로드 해주세요.
-        </Figure>
-        <Button variant='secondary' type="submit">확인</Button>
+        <Jumbotron>
+          <h1>파일을 업로드 해주세요.</h1>
+          <Button variant='secondary' type="submit">확인</Button>
+        </Jumbotron>
       </div>
     );
   };
