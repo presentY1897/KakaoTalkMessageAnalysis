@@ -12,12 +12,16 @@ class FileUpload extends Component {
     message: '파일을 업로드 해주세요.',
   };
 
-  inputChange = e => {
-    const file = e.target.files[0];
-    this.setState({
+  changeFile = file => {
+    if (file !== undefined) this.setState({
       file: file,
       message: file.name
     });
+  }
+
+  inputChange = e => {
+    const file = e.target.files[0];
+    this.changeFile(file);
   };
 
   uploadFile = () => {
@@ -43,10 +47,7 @@ class FileUpload extends Component {
       e.stopPropagation();
       if (e.dataTransfer.files) {
         const file = e.dataTransfer.files[0];
-        this.setState({
-          file: file,
-          message: file.name
-        });
+        this.changeFile(file);
       };
       this.setState({ style: {} });
     }
