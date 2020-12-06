@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TalkFilesContainer from '../TalkingData/TalkFilesContainer';
 import { Container } from 'react-bootstrap';
+import Analyzer from '../TalkingData/Analyzer';
 
 class DataViewerTab extends Component {
     state = {
@@ -15,7 +16,12 @@ class DataViewerTab extends Component {
     }
     componentDidUpdate = (preProps) => {
         if (preProps.addedFile !== this.props.addedFile && this.props.addedFile !== null) {
-            console.log(this.props.addedFile);
+            const file = this.props.addedFile;
+            const analyzer = new Analyzer();
+            if(file.name.split('.').pop().toLowerCase() === 'csv'){
+                const chunks = file.text().then(result =>  analyzer.analyzingRawCsv(result));
+                console.log(chunks);
+            }
         }
     };
     

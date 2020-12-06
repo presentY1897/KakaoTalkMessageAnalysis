@@ -87,8 +87,7 @@ class Analyzer {
                     prevChat.text = prevChat.text + '\n' + chunk.data;
                 } else if (type === 'out' || type === 'in') {
                     // 대충 이름 구하는 부분
-                    const person = this.findPerson(name);
-                    person.inTime =
+                    //const person = this.findPerson(name);
                 }
             });
         }
