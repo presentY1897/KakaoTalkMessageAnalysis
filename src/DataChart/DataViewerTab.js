@@ -14,18 +14,86 @@ class DataViewerTab extends Component {
                 { name: '테스트 3', duration: [new Date().setFullYear(2017), new Date()], people: this.randomDataCreate() }
             ]
     }
-    componentDidUpdate = (preProps) => {
+    componentDidUpdate = async (preProps) => {
         if (preProps.addedFile !== this.props.addedFile && this.props.addedFile !== null) {
             const file = this.props.addedFile;
             const analyzer = new Analyzer();
-            if(file.name.split('.').pop().toLowerCase() === 'csv'){
-                const chunks = file.text().then(result =>  analyzer.analyzingRawCsv(result));
-                console.log(chunks);
+            if (file.name.split('.').pop().toLowerCase() === 'csv') {
+                const chunks = await file.text().then(result => analyzer.analyzingRawCsv(result));
+                const files = this.state.files;
+                files.push(this.dataCreate(chunks, file.name));
+                this.setState({
+                    files: files
+                });
             }
         }
     };
-    
-    randomDataCreate(){
+    dataCreate(chunks, name) {
+        const personSum = chunks.filter(cur => cur.person.name !== undefined).reduce((acc, cur) => {
+            let person = acc.find(item => item.key === cur.person);
+            if (person !== undefined) {
+                person.chat.push({
+                    text: cur.text,
+                    time: cur.time
+                });
+            } else {
+                person = {
+                    key: cur.person,
+                    chat: [{
+                        text: cur.text,
+                        time: cur.time
+                    }],
+                };
+                acc.push(person);
+            }
+            return acc;
+        }, []);
+
+        const minDate = new Date(Math.min.apply(0, personSum.map(person => Math.min.apply(0, person.chat.map(chat => new Date(chat.time)))).filter(d => isNaN(d) === false)));
+        const maxDate = new Date(Math.max.apply(0, personSum.map(person => Math.max.apply(0, person.chat.map(chat => new Date(chat.time)))).filter(d => isNaN(d) === false)));
+        const dateDivideIterator = (start, end, step) => {
+            let arr = [];
+            const startDate = new Date(start);
+            const endDate = new Date(end);
+            for (let i = startDate; i < endDate; i = new Date(Number(i) + step)) {
+                arr.push({ time: [i, new Date(Number(i) + step)], count: 0, sum: 0 });
+            }
+            return arr;
+        }
+        const divideCount = 100;
+        const timeStep = (maxDate - minDate) / divideCount;//1 * 24 * 60 * 60000;
+        const sum = personSum.map(person => {
+            person.data = person.chat.reduce((acc, cur) => {
+                const curTime = new Date(cur.time);
+                const findedTime = acc.find(diff => diff.time[0] <= curTime && diff.time[1] >= curTime);
+                if (findedTime !== undefined) {
+                    findedTime.count++;
+                    findedTime.sum += cur.text.length;
+                }
+                return acc;
+            }, dateDivideIterator(minDate, maxDate, timeStep));
+            return person;
+        });
+
+        return {
+            name: name,
+            duration: [minDate, maxDate],
+            people: sum.map((person, idx) => {
+                return {
+                    key: idx,
+                    name: person.key.name,
+                    data: {
+                        total: {
+                            count: person.chat.reduce((acc, cur) => { acc += 1; return acc; }, 0),
+                            sum: person.chat.reduce((acc, cur) => { acc += cur.length; return acc; }, 0)
+                        },
+                        perTime: person.data.map(timeTalking => { return { date: timeTalking.time[0], count: timeTalking.count, sum: timeTalking.sum } }),
+                    }
+                };
+            })
+        };
+    }
+    randomDataCreate() {
         let people = [];
         const minPeople = 2;
         const maxPeople = 20;
