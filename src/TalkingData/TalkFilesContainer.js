@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Collapse } from 'react-bootstrap';
-import TalkDataViewer from './TalkDataViewer';
+import TalkDataViewer from '../DataChart/TalkDataViewer';
 import TalkFile from './TalkFile';
 
 class TalkFileContainers extends Component {

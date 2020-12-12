@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import FileUpload from './FileUpload';
+import FileUpload from '../FileUpload';
 import { Container } from 'react-bootstrap';
 
 class FileUploadTab extends Component {

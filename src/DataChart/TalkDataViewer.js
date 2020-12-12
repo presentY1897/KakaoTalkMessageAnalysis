@@ -1,7 +1,7 @@
 import { Button, Jumbotron } from 'react-bootstrap';
 import React, { Component } from 'react';
-import BarGraph from '../DataChart/BarGraph';
-import Graph from '../DataChart/Graph';
+import BarGraph from './BarGraph';
+import Graph from './Graph';
 import TalkerList from './TalkerList';
 
 class TalkDataViewer extends Component {

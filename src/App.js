@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import ExplainTab from './Explain/ExplainTab';
-import FileUploadTab from './FileUpload/FileUploadTab';
-import DataViewerTab from './TalkingData/DataViewerTab';
+import FileUploadTab from './TalkingData/FileUploadTab';
+import DataViewerTab from './DataChart/DataViewerTab';
 import { Row, Container, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
