@@ -22,7 +22,7 @@ class Graph extends Component {
         }
     };
     componentDidUpdate = function (preProps) {
-        if (preProps.data !== this.props.data) {
+        if (false) {
             const personSum = this.props.data.reduce((acc, cur) => {
                 let person = acc.find(item => item.key === cur.person);
                 if (person !== undefined) {
@@ -109,7 +109,7 @@ class Graph extends Component {
         }
         return (
             <div style={containerCss} >
-                <Line data={this.state.data} options={options}> </Line>
+                <Line data={this.props.data} options={options}> </Line>
             </div>
         );
     };

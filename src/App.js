@@ -7,6 +7,10 @@ import { Row, Container, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
+  const [uploadFile, setUploadFile] = React.useState(null);
+  const fileUploadEvent = (file) => {
+    setUploadFile(file);
+  };
   return (
     <div>
       <Container fluid style={{ backgroundColor: '#d5d5d5' }}>
@@ -17,12 +21,12 @@ function App() {
         </Row>
         <Row>
           <Col>
-            <FileUploadTab></FileUploadTab>
+            <FileUploadTab fileUploadEvent={fileUploadEvent}></FileUploadTab>
           </Col>
         </Row>
         <Row>
           <Col>
-            <DataViewerTab></DataViewerTab>
+            <DataViewerTab addedFile={uploadFile}></DataViewerTab>
           </Col>
         </Row>
       </Container>
